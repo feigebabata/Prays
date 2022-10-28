@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager I;
+    public AudioSource BGMSource;
     public AudioClip KnockClip;
     private List<AudioSource> _audioSource = new List<AudioSource>();
 
@@ -19,6 +21,19 @@ public class AudioManager : MonoBehaviour
     public void PlayKnock()
     {
         playAudio(KnockClip);
+    }
+
+    public void OnPlayOM(bool isOn)
+    {
+        if(isOn)
+        {
+            BGMSource.time=0;
+            BGMSource.Play();
+        }
+        else
+        {
+            BGMSource.Stop();
+        }
     }
 
     private void playAudio(AudioClip audioClip)
@@ -48,5 +63,4 @@ public class AudioManager : MonoBehaviour
 
         return audioSource;
     }
-
 }

@@ -49,7 +49,7 @@ public class Plan1 : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f/3);
+            yield return new WaitForSeconds(1f/2);
             playKnock();
         }
     }
@@ -59,7 +59,7 @@ public class Plan1 : MonoBehaviour
         MuYuAnimator.gameObject.SetActive(false);
         MuYuAnimator.gameObject.SetActive(true);
         AudioManager.I.PlayKnock();
-        var tip = GameObject.Instantiate(Tip);
+        var tip = GameObject.Instantiate(Tip,Tip.transform.parent);
         tip.SetActive(true);
         StartCoroutine(delayDestroy(tip));
     }
@@ -69,4 +69,17 @@ public class Plan1 : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GameObject.Destroy(tip);
     }
+
+    public void OnPlayOM(bool isOn)
+    {
+        AudioManager.I.OnPlayOM(isOn);
+    }
 }
+/*
+沙弥(初入 草庵)
+比丘(和尚 小庙 开始塑像1个)
+主持(人多之后管事的 寺 塑佛 菩萨 罗汉 天尊)
+方丈(精神领袖)
+长老(退隐潜修)
+佛(最高级)
+*/
